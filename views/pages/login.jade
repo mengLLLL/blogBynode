@@ -1,0 +1,36 @@
+extends ../layout
+block style
+	link(href="../../style/login.css" rel="stylesheet")
+	//-一定要有缩进
+block content
+	.container.login-card
+		.row
+			form.form-horizontal(method="post",action="/index/new" name="newuser")
+				input(type="hidden", )
+				.form-group
+					label.userName.col-sm-2 用户名
+					.col-sm-10
+						input.form-control#username(type="text",name="newuser[username]")
+				.form-group
+					label.password.col-sm-2 密码
+					.col-sm-10
+						input.form-control#password(type="text",name="newuser[password]")
+				.from-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type="submit") 注册
+	.container.login-card
+		.row
+			form.form-horizontal(method="post",action="/index/old" name="olduser")
+				input(type="hidden", )
+				.form-group
+					label.userName.col-sm-2 用户名
+					.col-sm-10
+						input.form-control#username(type="text",name="olduser[username]")
+				.form-group
+					label.password.col-sm-2 密码
+					.col-sm-10
+						input.form-control#password(type="text",name="olduser[password]")
+				.from-group
+					.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type="submit") 登录
+

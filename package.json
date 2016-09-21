@@ -1,0 +1,25 @@
+{
+  "name": "blognodejs",
+  "version": "1.0.0",
+  "description": "nodejs practice",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "blog"
+  ],
+  "author": "meng",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "jquery": "^3.1.0",
+    "mongoose": "^4.6.1",
+    "serve-static": "^1.11.1"
+  }
+}

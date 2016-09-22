@@ -1,0 +1,30 @@
+body{
+    background: #c1e2b3;
+}
+.login-part{
+	width: 30%;
+	position: absolute;
+    border: 1px solid #c9e2b3;
+    background: #ffffff;
+    padding:20px;
+}
+.login-new{
+    right:100px;
+    top:100px;
+}
+.login-old{
+    right:120px;
+    top:120px;
+}
+.part-title{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.showPicture{
+    background: url("./bg.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width:550px;
+    height:600px;
+}

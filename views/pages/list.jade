@@ -1,0 +1,15 @@
+extends ../layout
+block content
+	.container
+		table.table.table-hover
+			thead
+				tr
+					th 标题
+					th 作者
+					th 时间
+				tbody
+					each item in blogs
+						tr
+							td #{item.articleName}
+							td #{item.articleAuthor}
+							td #{moment(item.createAt).format('MM/DD/YYYY')}

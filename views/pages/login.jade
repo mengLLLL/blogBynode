@@ -1,36 +1,35 @@
 extends ../layout
-block style
-	link(href="../../style/login.css" rel="stylesheet")
-	//-一定要有缩进
 block content
-	.container.login-card
+	.container
+		.showPicture
+	.container.login-part.login-new
 		.row
-			form.form-horizontal(method="post",action="/index/new" name="newuser")
-				input(type="hidden", )
+			a.part-title.logNew 注册
+			form.form-horizontal(method="post",action="/index/new" name="newuser",role="form")
 				.form-group
-					label.userName.col-sm-2 用户名
-					.col-sm-10
-						input.form-control#username(type="text",name="newuser[username]")
+					label.userName.col-sm-2.control-label 用户名
+					.col-sm-6
+						input.form-control.username(type="text",name="newuser[username]")
 				.form-group
-					label.password.col-sm-2 密码
-					.col-sm-10
-						input.form-control#password(type="text",name="newuser[password]")
+					label.password.col-sm-2.control-label 密码
+					.col-sm-6
+						input.form-control.password(type="text",name="newuser[password]")
 				.from-group
 					.col-sm-offset-2.col-sm-10
-						button.btn.btn-default(type="submit") 注册
-	.container.login-card
+						button.btn.btn-default#newUserBtn(type="submit") 注册
+	.container.login-part.login-old
 		.row
-			form.form-horizontal(method="post",action="/index/old" name="olduser")
-				input(type="hidden", )
+			a.part-title.logOld 登录
+			form.form-horizontal(method="post",action="/index/old" name="olduser",role="form")
 				.form-group
-					label.userName.col-sm-2 用户名
-					.col-sm-10
-						input.form-control#username(type="text",name="olduser[username]")
+					label.userName.col-sm-2.control-label 用户名
+					.col-sm-6
+						input.form-control.username(type="text",name="olduser[username]")
 				.form-group
-					label.password.col-sm-2 密码
-					.col-sm-10
-						input.form-control#password(type="text",name="olduser[password]")
+					label.password.col-sm-2.control-label 密码
+					.col-sm-6
+						input.form-control.password(type="text",name="olduser[password]")
 				.from-group
 					.col-sm-offset-2.col-sm-10
-						button.btn.btn-default(type="submit") 登录
+						button.btn.btn-default#oldUserBtn(type="submit") 登录
 

@@ -1,10 +1,13 @@
 body{
-    background: #c1e2b3;
+    background: #ffffff;
+}
+a{
+    cursor: pointer;
 }
 .login-part{
 	width: 30%;
 	position: absolute;
-    border: 1px solid #c9e2b3;
+    border: 1px solid #28a4c9;
     background: #ffffff;
     padding:20px;
 }

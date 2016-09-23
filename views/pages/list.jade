@@ -5,11 +5,16 @@ block content
 			thead
 				tr
 					th 标题
-					th 作者
-					th 时间
+					th 创建时间
+					th 查看
+					th 操作
 				tbody
 					each item in blogs
 						tr
 							td #{item.articleName}
-							td #{item.articleAuthor}
 							td #{moment(item.createAt).format('MM/DD/YYYY')}
+							td
+								button.btn.btn-default.deleteBlog 删除
+							td
+								a.blogDetail 查看
+							input.articleId(type="hidden",value="#{item._id}")

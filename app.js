@@ -146,8 +146,42 @@ app.post('/published',function(req,res){
       console.log("new blog!")
       res.redirect('/list')
     }
-
   })
 })
+
+//blog详细页post
+app.post('/postdetail',function(req,res){
+  var Id = req.body.articleId;
+  console.log('back id ',Id)
+  blog.find({_id:Id},function(err,result){
+    if(err){
+      console.log(err)
+    }
+    res.redirect('detail',{
+      blogDetail:result[0],
+      title:"文章详情~"
+    })
+  })
+})
+
+app.get('/detail',function(req,res){
+  var Id = req.query.articleId;
+  console.log('back id ',Id)
+  blog.find({_id:Id},function(err,result){
+    if(err){
+      console.log(err)
+    }
+    console.log('result',result[0])
+    res.render('detail',{
+      blogDetail:result[0],
+      title:"文章详情~"
+    })
+  })
+})
+
+
+
+
+
 //监听
 app.listen(port)

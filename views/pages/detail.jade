@@ -5,6 +5,6 @@ block content
 			p 标题
 				p #{blogDetail.articleName}
 			p 时间
-				p #{blogDetail.createAt}
+				p #{moment(blogDetail.createAt).format('MM/DD/YYYY')}
 			p 内容
 				p #{blogDetail.articleContent}

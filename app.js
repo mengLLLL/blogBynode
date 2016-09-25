@@ -80,43 +80,26 @@ app.post('/index/old',function(req,res){
 			console.log('welcome back')
       //设置cookie,expires设置过期时间
       res.cookie('_id',results[0]._id)
-			res.redirect('/index')
+			res.redirect('/admin')
 		}else{
 			res.redirect('/login')
 		}
 	})
 })
 
-//登录或者注册成功之后的界面
-app.get('/index',function(req,res){
+//登录或者注册成功之后的界面，也就是文章列表页
+app.get('/admin',function(req,res){
   console.log('get cookie',req.cookies)
-  var id = req.cookies;
+  var id = req.cookies;//用户id
   var userMsg;
-//通过存取的cookie来获取用户信息
-
-    user.findById(id,function(err,result){
-      if(err){
-        return console.error(err)
-      }
-      userMsg = result;
-      console.log('userMsg',userMsg);
-      return userMsg
-    });
-
-	res.render('index',{
-		title:'欢迎～'
-	})
-})
-
-//文章列表页,只进行查看
-app.get('/list',function(req,res){
-  blog.find({}, function (err, results) {
+  blog.find({authorId:id._id},function(err,results){
     if(err){
-      return console.error(err)
+      console.error(err)
     }
-    res.render('list',{
-      blogs:results,
-      title:'文章列表~'
+    console.log('blog find',results)
+    res.render('admin',{
+        title:'欢迎～',
+        blogs:results
     })
   })
 })
@@ -132,19 +115,19 @@ app.post('/published',function(req,res){
   var newBlog = req.body.blog;
   //获取cookie
   var userId = req.cookies;
+  console.log('authorId publish html',userId)
   console.log(userId)
   var blogObj = new blog({
     articleName:newBlog.articleName,
-    articleAuthor:newBlog.articleAuthor,
     articleContent:newBlog.articleContent,
-    authorId:userId.id
+    authorId:userId._id
   });
   blogObj.save(function(err,newblog){
     if(err){
       return console.error(err)
     }else{
       console.log("new blog!")
-      res.redirect('/list')
+      res.redirect('/admin')
     }
   })
 })
@@ -178,7 +161,20 @@ app.get('/detail',function(req,res){
     })
   })
 })
-
+//article delete
+app.delete('/admin/delete',function(req,res){
+  var id = req.query.id;
+  console.log(id)
+  if(id){
+    blog.remove({_id:id},function(err,result){
+      if(err){
+        console.log(err)
+      }else{
+        res.json({success:1})
+      }
+    })
+  }
+})
 
 
 

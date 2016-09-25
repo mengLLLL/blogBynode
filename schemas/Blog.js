@@ -4,7 +4,6 @@
 var mongoose = require("mongoose");
 var blogSchema = new mongoose.Schema({
   articleName:String,
-  articleAuthor:String,
   articleContent:String,
   authorId:String,
   createAt:{

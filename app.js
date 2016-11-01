@@ -170,7 +170,9 @@ app.delete('/admin/delete',function(req,res){
       if(err){
         console.log(err)
       }else{
-        res.json({success:1})
+        res.json({
+          success:1
+        })
       }
     })
   }

@@ -181,5 +181,15 @@ app.delete('/admin/delete',function(req,res){
 
 
 
+//index 展示所有博客的页面
+
+//发表评论
+
+//删除评论
+
+//上传头像
+
+//设置（修改）个人信息
+
 //监听
 app.listen(port)

@@ -11,5 +11,4 @@ var blogSchema = new mongoose.Schema({
     default:Date.now()
   }
 });
-
 module.exports = blogSchema;

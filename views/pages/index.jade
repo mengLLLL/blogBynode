@@ -1,3 +1,17 @@
 extends ../layout
+
 block content
 	.container
+		.blogContent
+			each item in blogs
+				div.blogItem
+					a(href="#" class='authname') #{item.authorName}
+					div
+						p.articleName #{item.articleName}
+					div.articleMsg
+						span.total
+						span.reply
+					input(type="text" style='display:none' value="#{item.simpleId}")
+
+	script(src="script/detail.js",type="text/javascript")
+	script(src="script/index.js", type="text/javascript")

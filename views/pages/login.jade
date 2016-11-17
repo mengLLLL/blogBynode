@@ -5,7 +5,7 @@ block content
 	.container.login-part.login-new
 		.row
 			a.part-title.logNew 注册
-			form.form-horizontal(method="post",action="/index/new" name="newuser",role="form")
+			form.form-horizontal(method="post",action="/register" name="newuser",role="form")
 				.form-group
 					label.userName.col-sm-2.control-label 用户名
 					.col-sm-6
@@ -20,7 +20,7 @@ block content
 	.container.login-part.login-old
 		.row
 			a.part-title.logOld 登录
-			form.form-horizontal(method="post",action="/index/old" name="olduser",role="form")
+			form.form-horizontal(method="post",action="/login" name="olduser",role="form")
 				.form-group
 					label.userName.col-sm-2.control-label 用户名
 					.col-sm-6
@@ -32,4 +32,5 @@ block content
 				.from-group
 					.col-sm-offset-2.col-sm-10
 						button.btn.btn-default#oldUserBtn(type="submit") 登录
+	script(src="script/index.js", type="text/javascript")
 

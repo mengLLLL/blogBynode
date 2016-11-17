@@ -9,6 +9,8 @@ var blogSchema = new mongoose.Schema({
   createAt:{
     type:Date,
     default:Date.now()
-  }
+  },
+  authorName:String,
+  simpleId:Number
 });
 module.exports = blogSchema;

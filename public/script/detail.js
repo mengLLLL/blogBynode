@@ -2,8 +2,9 @@
  * Created by MengL on 16/9/22.
  */
 $(function(){
-  $('.blogDetail').on('click',function(){
-    var articleId = $(this).parent('td').next().val();
+  $('.articleName').on('click',function(){
+    var articleId = $(this).parent().siblings("input").val();
+    console.log('articleId',articleId)
     //$.ajax({
     //  url:"http://localhost:8080/detail",
     //  method:"GET",

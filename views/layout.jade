@@ -6,4 +6,23 @@ html
 	block style
 body
 	include ./includes/header
+	if logged
+		div#logout
+			a(href="/logout") 注销
+		include ./includes/user
+	else
+		div#login
+			.login
+				a(href='/login')
+					i.fa.fa-sign-in &nbsp;登录
+			.logup
+				a(href='/login')
+					i.fa.fa-user &nbsp;注册
+
+
+
+
+
+	.publish
+		a(href='/publish') 发布文章
 	block content

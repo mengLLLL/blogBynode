@@ -20,7 +20,23 @@ var blogSchema = new mongoose.Schema({
 module.exports = blogSchema;
 ``` 
 
-   * schema深入理解 
+       
+
+* schema深入理解
+    1. schema可以创建方法
+    
+    ```
+    blogSchema.methods.getName = function(){
+        console.log(this.articleName);
+    }
+    var blog1 = new blog({
+        articleName:test
+    });
+    blog1.getName();
+    ```
+    
+   
+  
     
         
 
@@ -35,9 +51,12 @@ var blog = mongoose.model('blog',blogSchema);
 module.exports = blog
 ```
 
+* model的深入理解
+    1.  model可以执行查询
+
 * entity
 
-> 也就是一个实例，由model生成的,比如要存储新的一篇博客
+> 也就是一个实例（实体），由model生成的,比如要存储新的一篇博客
 
 ```
 var blog = require('./models/blog')
@@ -47,3 +66,7 @@ articleContent:'lue',
 ...
 })
 ```
+
+* entity的深入理解
+    1. entity具有数据库操作`CRUD`,C-create,R-retrieve(重新获取),U-update，D-delete
+    2. entity可以查询

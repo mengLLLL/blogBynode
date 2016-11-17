@@ -11,3 +11,6 @@
      * 删除评论 DELETE /admin/delete/:commentId
      * 删除作者 DELETE /admin/delete/:authorId
      * 删除博客 DELETE /admin/delete/:postId
+     
+###安全部分
+* 密码 -- sha1加密

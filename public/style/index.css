@@ -1,0 +1,62 @@
+.blogItem{
+    border-bottom: 1px dashed #999;
+    padding:15px 0 15px 0;
+}
+.container{
+    width:60%;
+}
+.blogItem .authname{
+    font-size: 12px;
+}
+.blogItem .articleName{
+    color: rgba(0,0,0,0.8);
+}
+.blogItem .articleName:hover{
+    cursor: pointer;
+    color: rgba(0,0,0,1);
+
+}
+.blogItem p{
+    margin: 10px 0 10px 0;
+}
+.blogItem .articleName{
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.login, .logup, .publish{
+    position: fixed;
+}
+
+.login{
+    top: 34px;
+    right:100px;
+}
+.logup{
+    top:34px;
+    right:50px;
+}
+#logout{
+    position: fixed;
+    top:34px;
+    right:50px;
+}
+.publish{
+    top:50px;
+    left:50px;
+}
+.user-msg{
+    width:200px;
+    height:200px;
+    background: #00b3ee;
+    position: fixed;
+    right: 20px;
+}
+.user-msg .userName{
+    color: red;
+}
+
+.page-header{
+    cursor: pointer;
+}

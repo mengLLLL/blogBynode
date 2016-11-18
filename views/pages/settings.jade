@@ -7,13 +7,21 @@ block content
 				.form-group
 					label.col-sm-2 用户名
 					.col-sm-5
-						input.form-control(type='text', name='username', value='#{user.username}')
+						input.form-control(type='text', name='user[username]', value='#{user.username}')
 				.form-group
 					label.col-sm-2 密码
 					.col-sm-5
-						input.form-control(type='text', name='password', value='#{user.password}')
+						input.form-control(type='text', name='user[password]', value='#{user.password}')
 				.form-group
 					.col-sm-10
 						button.btn.btn-default#update(type='submit') 保存更改
+			form.form-horizontal(method='post', action='/upload', name='upload', enctype='multipart/form-data')
+				.form-group
+					label.col-sm-2 上传头像
+					.col-sm-5
+						input.form-control#picture(type='file', name='avatar')
+				.form-group
+					.col-sm-10
+						button.btn.btn-default#upload(type='submit') 上传
 	script(src="script/detail.js",type="text/javascript")
 	script(src="script/index.js", type="text/javascript")

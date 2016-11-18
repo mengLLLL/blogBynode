@@ -13,6 +13,11 @@ var checkNotLogin = require("../middlewares/check.js").checkNotLogin;
 var checkLogin = require("../middlewares/check.js").checkLogin;
 var blogItemSum = 0;//TODO 这样能保证唯一吗？这是个问题。。。
 
+var userModel = require('../models/user');
+var formidable = require('formidable');
+var util = require('util');
+var path = require('path')
+var fs = require('fs')
 
 
 //登录，登陆成功回到首页
@@ -50,7 +55,8 @@ router.get('/publish', checkLogin, function (req, res) {
         res.render('publish',{
           title:'Aloha 写文章啦～_～',
           logged:true,
-          user:results[0]
+          user:results[0],
+          avatar:results[0].avatar
         })
       }
     })
@@ -104,9 +110,105 @@ router.get('/setting', function (req, res) {
       res.render('settings',{
         title:'Aloha Setting',
         logged:true,
-        user:results[0]
+        user:results[0],
+        avatar:results[0].avatar
       })
     }
   })
+});
+
+//上传头像
+router.post('/upload', function (req, res) {
+  //var avatar = req.files[0].path.split(path.sep).pop();
+  //var avatar = req.files.avatar.path.split(path.sep).pop();
+  //console.log(avatar)
+  var form = new formidable.IncomingForm();
+  form.encoding = 'utf-8';
+  form.uploadDir = path.join(process.cwd(),'public/img/');
+  form.keepExtensions = true;
+  form.parse(req, function (err, fields, files) {
+    if(err){
+      res.redirect('index');
+    }
+    var extName = '';
+    switch (files.avatar.type){
+      case 'image/pjpeg':
+        extName = 'jpg';
+        break;
+      case 'image/jpeg':
+        extName = 'jpg';
+        break;
+      case 'image/png':
+        extName = 'png';
+        break;
+      case 'image/x-png':
+        extName = 'png';
+        break;
+    }
+    if(extName.length == 0){
+      res.redirect('/setting');
+      return;
+    }
+    var avatarName = req.cookies.authorName + '-' + Math.ceil(Math.random()*10000000) + '.' + extName;
+    var newPath = form.uploadDir + avatarName;
+    console.log('avatarName',avatarName)
+    console.log('newpath',newPath);
+    //意义何在
+    fs.renameSync(files.avatar.path, newPath);
+
+    user.find({_id:req.cookies.authorId}, function (err, results) {
+      if(err){
+        console.error(err)
+      }else{
+        var avatarPath = 'img/'+avatarName;
+        console.log('avatarPath', avatarPath);
+        user.update({_id:req.cookies.authorId},{$set:{avatar:avatarPath}},function(err){})
+        res.render('settings',{
+          title:'Aloha Setting',
+          logged:true,
+          user:results[0],
+          avatar:avatarPath
+        })
+      }
+    })
+
+  })
+
+});
+//更新用户信息
+router.post('/update', function (req, res) {
+  var newMsg = req.body.user;
+  user.find({username:newMsg.username}, function (err, results) {
+    if(err){
+      return console.error(err)
+    }
+    if(results.length>0){
+      //数据库中有此用户
+      console.log('have this')
+      user.find({_id:req.cookies.authorId}, function (err, results) {
+        if(err){
+          return console.error(err)
+        }
+        if(results.length == 1){
+          //也就是没有改用户名,是同一个用户
+          console.log('same user');
+          //TODO 总结一下更新
+          user.update({_id:req.cookies.authorId},{$set:{password:newMsg.password}}, function (err) {});
+          res.redirect('/setting')
+        }else{
+          console.lor('not same user,please change')
+          res.redirect('/setting')
+          return console.error('用户名已存在')
+        }
+      })
+    }else{
+      user.update({_id:req.cookies.authorId},{$set:{username:newMsg.username, password:newMsg.password}}, function (err) {})
+      console.log('update success!');
+      res.redirect('/setting')
+    }
+  })
 })
+
+
+
 module.exports = router;

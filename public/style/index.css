@@ -33,12 +33,13 @@
     top: 34px;
     right:100px;
 }
-.logup{
-    top:34px;
-    right:50px;
+.login-content{
+    position: absolute;
+    width:40%;
+    top:50px;
+    right:0;
 }
-#logout{
-    position: fixed;
+.logup{
     top:34px;
     right:50px;
 }
@@ -46,17 +47,80 @@
     top:50px;
     left:50px;
 }
-.user-msg{
-    width:200px;
-    height:200px;
-    background: #00b3ee;
-    position: fixed;
-    right: 20px;
-}
-.user-msg .userName{
-    color: red;
+#logout{
+    display: none;
 }
 
 .page-header{
     cursor: pointer;
+}
+
+
+/*用户部分*/
+.user-msg{
+    display: inline-block;
+    position: fixed;
+    top:35px;
+    right:30px;
+}
+.user-msg .avatar{
+    display: inline-block;
+    width:40px;
+    height:40px;
+    border: none;
+    position: relative;
+}
+.user-msg .avatar img{
+    width:100%;
+    height:100%;
+    border-radius: 50%;
+    border:2px solid white;
+}
+.user-msg .avatar:hover img{
+    border: 2px solid #2aabd2;
+}
+.user-msg .m-caret{
+    position: absolute;
+    top: 12px;
+    right:-14px;
+}
+.user-msg .m-dropdown{
+    display: block;
+    position: absolute;
+    /*float: left;*/
+    background: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 6px;
+    padding:5px 0;
+    right:-20px;
+    margin-top: 10px;
+    list-style:none;
+    border-color: #d9d9d9;
+}
+.user-msg li{
+    line-height:20px;
+}
+
+.user-msg li a{
+    display: block;
+    padding:3px 20px;
+    line-height:20px;
+    width:160px;
+}
+.user-msg .m-dropdown{
+    display: none;
+}
+.user-msg .m-dropdown::before,.m-dropdown::after{
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top:-10px;
+    left:115px;
+    border-left: 9px solid transparent;
+    border-right:9px solid transparent;
+    border-bottom: 9px solid #d9d9d9;
+}
+.user-msg .m-dropdown::after{
+    top:-9px;
+    border-bottom: 9px solid white;
 }

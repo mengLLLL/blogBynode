@@ -53,13 +53,16 @@ router.post('/register', function (req, res) {
     }else{
       var userObj = new user({
         username:User.username,
-        password:User.password
+        password:User.password,
+        avatar:'img/default.png'
       })
       userObj.save(function (err, newuser) {
         if(err){
           return console.error(err)
         }else {
-          console.log('zhuce success');
+          console.log('zhuce success',newuser);
+          res.cookie('authorName',newuser.username);
+          res.cookie('authorId',newuser._id);
           res.redirect('/index')
         }
       })
@@ -84,7 +87,8 @@ router.get('/index', function (req, res) {
               blogs:blogResults,
               title:'Aloha',
               logged:logged,
-              user:results[0]
+              user:results[0],
+              avatar:results[0].avatar
             })
           }
         })
@@ -117,7 +121,8 @@ router.get('/detail', function(req, res){
             blogDetail:blogResult[0],
             title:'Aloha 文章详情',
             logged:true,
-            user:results[0]
+            user:results[0],
+            avatar:results[0].avatar
           })
         }
       })

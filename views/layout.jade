@@ -7,9 +7,21 @@ html
 body
 	include ./includes/header
 	if logged
-		div#logout
-			a(href="/logout") 注销
-		include ./includes/user
+		.user-msg
+			a.user.avatar#avatar(href="#")
+				img(src="#{avatar}")
+				i.fa.m-caret.fa-caret-down
+			ul.m-dropdown
+				li
+					a(href="/setting")
+						i.fa.fa-user
+						span &nbsp;设置
+				li
+					a(href="/logout")
+						i.fa.fa-sign-out
+						span 注销
+			div#logout
+				a(href="/logout") &nbsp;注销
 	else
 		div#login
 			.login

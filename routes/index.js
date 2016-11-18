@@ -15,4 +15,6 @@ module.exports = function (app) {
   app.get('/publish', require('./registeredUser'));
   app.get('/logout', require('./registeredUser'));
   app.get('/setting', require('./registeredUser'));
+  app.post('/upload', require('./registeredUser'));
+  app.post('/update', require('./registeredUser'));
 }

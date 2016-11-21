@@ -36,8 +36,10 @@ router.post('/login', checkNotLogin, function (req, res) {
       //这里的问题是cookie不能重写，目前只有清除cookie之后才可以用别的账号发布文章，否则不管是不是登录了别的账号，还是最开始的账号
       res.cookie('authorName',User.username);
       res.cookie('authorId',results[0]._id);
+      req.flash('info','login')
       res.redirect('/index')
     }else{
+      req.flash('error','用户名或密码错误')
       res.redirect('/login')
     }
   })
@@ -76,8 +78,7 @@ router.post('/publish', checkLogin, function (req, res) {
     articleName:newBlog.articleName,
     articleContent: newBlog.articleContent,
     authorId:authorId,
-    authorName:authorName,
-    simpleId:++blogItemSum
+    authorName:authorName
   });
   blogObj.save(function (err, newblog) {
     if(err){
@@ -197,7 +198,8 @@ router.post('/update', function (req, res) {
           res.redirect('/setting')
         }else{
           console.lor('not same user,please change')
-          res.redirect('/setting')
+          res.redirect('/setting');
+          req.flash('error','用户名已存在')
           return console.error('用户名已存在')
         }
       })
@@ -209,6 +211,32 @@ router.post('/update', function (req, res) {
   })
 })
 
+
+router.post('/comment', checkLogin, function(req, res){
+  var articleId = req.body.comment.articleId;
+  blog.find({_id: articleId}, function (err, blogResults) {
+    if(err){
+      return console.error(err)
+    }else{
+      user.find({_id:req.cookies.authorId}, function (err, userResults) {
+        if(err){
+          return console.error(err)
+        }else{
+          console.log('comment',req.body)
+          blogResults[0].comments.push({
+            commentName: userResults[0].username,
+            commentContent:req.body.comment.content,
+            commentId:44
+          })
+          blogResults[0].save();
+          console.log('blog comment save',blogResults[0]);
+          //res.redirect('/detail')
+        }
+      })
+    }
+  })
+
+})
 
 
 module.exports = router;

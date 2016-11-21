@@ -32,6 +32,12 @@ block content
 							input.form-control.password(type="password",name="olduser[password]")
 					.from-group
 						.col-sm-offset-2.col-sm-10
-							button.btn.btn-default#oldUserBtn(type="submit") 登录
+							button.btn.btn-default#oldUserBtn(type="submit") 登陆
+					if infos
+						- console.log('infos',infos)
+						div #{infos}
+					if errors
+						- console.log('errors',errors)
+						div #{errors}
 	script(src="script/index.js", type="text/javascript")
 

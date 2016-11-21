@@ -17,4 +17,5 @@ module.exports = function (app) {
   app.get('/setting', require('./registeredUser'));
   app.post('/upload', require('./registeredUser'));
   app.post('/update', require('./registeredUser'));
+  app.post('/comment', require('./registeredUser'));
 }

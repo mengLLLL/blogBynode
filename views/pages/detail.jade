@@ -1,11 +1,34 @@
 extends ../layout
 block content
-	.container
-		div
-			p 标题
-				p #{blogDetail.articleName}
-			p 时间
-				p #{moment(blogDetail.createAt).format('MM/DD/YYYY')}
-			p 内容
-				p #{blogDetail.articleContent}
+	include ../includes/detail-header
+	.container.detail-container
+
+		.authorPart
+			div.authorAvatar
+				a(href="#")
+					img(src="#{author.avatar}")
+			div.authorName
+				a(href="#")
+					i.fa.fa-pagelines &nbsp;#{author.username}
+			div.blogCreateTime #{moment(blogDetail.createAt).format('YYYY.MM.DD')}
+			div.authorTips 共有4人收藏,共有400人点赞
+		div.blogDetail
+			h2.blogName #{blogDetail.articleName}
+			div.blogTips
+				span.readSum 阅读&nbsp;2000
+				span.commentSum 评论&nbsp;39
+				span.great 喜欢&nbsp;299
+			p.blogConteng #{blogDetail.articleContent}
+		div.comment-part
+			if comments
+				- console.log(comments)
+				ul.comment-list
+					each item in comments
+						li.comment-item #{item.commentContent}
+			div.comment-box
+				form(name="comment",action='/comment',method="post")
+					input#hiddenArticleId(type="text", name="comment[articleId]")
+					textarea(name="comment[content]", type="text", placeholder="写下你的评论……")
+					button(type="submit")#postComment 发表
 	script(src="script/index.js", type="text/javascript")
+	script(src="script/detail.js", type="text/javascript")

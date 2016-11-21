@@ -11,6 +11,17 @@ var blogSchema = new mongoose.Schema({
     default:Date.now()
   },
   authorName:String,
-  simpleId:Number
+  comments:[{
+    commentName:String,
+    commentTime:{
+      type:Date,
+      default:Date.now()
+    },
+    commentContent:String,
+    commentId:{
+      type:Number,
+      default:0
+    }
+  }]
 });
 module.exports = blogSchema;

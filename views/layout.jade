@@ -5,7 +5,7 @@ html
 	include ./includes/head
 	block style
 body
-	include ./includes/header
+	include ./includes/sidebar
 	if logged
 		.user-msg
 			a.user.avatar#avatar(href="#")
@@ -35,6 +35,4 @@ body
 
 
 
-	.publish
-		a(href='/publish') 发布文章
 	block content

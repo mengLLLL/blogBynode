@@ -1,7 +1,9 @@
 extends ../layout
 
 block content
-	.container
+	.container.m-container
+		include ../includes/navbar
+		div.bg
 		.blogContent
 			each item in blogs
 				div.blogItem
@@ -11,7 +13,6 @@ block content
 					div.articleMsg
 						span.total
 						span.reply
-					input(type="text" style='display:none' value="#{item.simpleId}")
+					input(type="text" style='display:none' value="#{item._id}")
 
-	script(src="script/detail.js",type="text/javascript")
 	script(src="script/index.js", type="text/javascript")

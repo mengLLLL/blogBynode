@@ -60,6 +60,7 @@ router.post('/register', function (req, res) {
         if(err){
           return console.error(err)
         }else {
+          req.flash('info','注册成功')
           console.log('zhuce success',newuser);
           res.cookie('authorName',newuser.username);
           res.cookie('authorId',newuser._id);
@@ -108,31 +109,55 @@ router.get('/index', function (req, res) {
 //查看文章详情页
 router.get('/detail', function(req, res){
   var articleId = req.query.articleId;
-  blog.find({simpleId : articleId}, function (err, blogResult) {
+  console.log('res ddd',res)
+  console.log('detail articleId', articleId)
+  blog.find({_id : articleId}, function (err, blogResult) {
     if(err){
       return console.error(err)
     }
     if(req.cookies.authorId){
-      user.find({_id:req.cookies.authorId}, function (err, results) {
+      user.find({_id:req.cookies.authorId}, function (err, userResults) {
         if(err){
           return console.error(err)
         }else{
-          res.render('detail',{
-            blogDetail:blogResult[0],
-            title:'Aloha 文章详情',
-            logged:true,
-            user:results[0],
-            avatar:results[0].avatar
+          user.find({_id:blogResult[0].authorId}, function (err, authorResults) {
+            if(err){
+              return console.error(err)
+            }else{
+              res.render('detail',{
+                blogDetail: blogResult[0],
+                title:'Aloha Detail',
+                logged:true,
+                user:userResults[0],
+                avatar:userResults[0].avatar,
+                author:authorResults[0],
+                comments:blogResult[0].comments
+              })
+            }
           })
         }
       })
     }else{
-      res.render('detail', {
-        blogDetail:blogResult[0],
-        title:'Aloha 文章详情',
-        logged:false,
-        user:{}
+      user.find({_id:blogResult[0].authorId}, function (err, authorResults) {
+        if(err){
+          return console.error(err)
+        }else{
+          res.render('detail',{
+            blogDetail: blogResult[0],
+            title:'Aloha Detail',
+            logged:false,
+            user:{},
+            author:authorResults[0],
+            comments:blogResult[0].comments
+          })
+        }
       })
+      //res.render('detail', {
+      //  blogDetail:blogResult[0],
+      //  title:'Aloha 文章详情',
+      //  logged:false,
+      //  user:{}
+      //})
     }
 
   })

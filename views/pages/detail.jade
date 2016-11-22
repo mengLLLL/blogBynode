@@ -21,14 +21,29 @@ block content
 			p.blogConteng #{blogDetail.articleContent}
 		div.comment-part
 			if comments
-				- console.log(comments)
+				- console.log(comments.length)
 				ul.comment-list
 					each item in comments
-						li.comment-item #{item.commentContent}
+						li.comment-item
+							.comment-avatar
+								a.commentAvatar(href="#")
+									img(src="#{author.avatar}")
+							a(href="#").comment-username #{author.username}
+							.comment-post-time #{moment(item.commentTime).format('YYYY.MM.DD HH:mm:ss')}
+							.comment-content #{item.commentContent}
+
+		//	div.comment-box
+		//		form(name="comment",action='/comment',method="post")
+		//			input#hiddenArticleId(type="text", name="comment[articleId]")
+		//			textarea(name="comment[content]", type="text", placeholder="写下你的评论……")
+		//			button(type="submit")#postComment 发表
+		div.comment-part
 			div.comment-box
-				form(name="comment",action='/comment',method="post")
+				form.comment-form(name="comment")
 					input#hiddenArticleId(type="text", name="comment[articleId]")
-					textarea(name="comment[content]", type="text", placeholder="写下你的评论……")
-					button(type="submit")#postComment 发表
+					textarea#commentContent(name="comment[content]", type="text", placeholder="写下你的评论……")
+					div#postComment 发表
+
 	script(src="script/index.js", type="text/javascript")
+	script(src="script/moment.min.js",type="text/javascript")
 	script(src="script/detail.js", type="text/javascript")

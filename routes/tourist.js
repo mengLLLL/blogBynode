@@ -152,12 +152,6 @@ router.get('/detail', function(req, res){
           })
         }
       })
-      //res.render('detail', {
-      //  blogDetail:blogResult[0],
-      //  title:'Aloha 文章详情',
-      //  logged:false,
-      //  user:{}
-      //})
     }
 
   })

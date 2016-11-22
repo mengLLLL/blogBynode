@@ -1,38 +1,40 @@
 extends ../layout
 block content
-	.container
-		.showPicture
-	.login-content
+	//.container
+		//.showPicture
+	.container.login-container
+		.login-logo
+			img(src='img/default.png')
+	.container.login-content
+		h4.title-log
+			span
+				a#login-old 登录
+				b ·
+				a#login-new.active 注册
 		.container.login-part.login-new
 			.row
-				a.part-title.logNew 注册
+				//a.part-title.logNew 注册
 				form.form-horizontal(method="post",action="/register" name="newuser",role="form")
-					.form-group
-						label.userName.col-sm-2.control-label 用户名
-						.col-sm-6
-							input.form-control.username(type="text",name="newuser[username]")
-					.form-group
-						label.password.col-sm-2.control-label 密码
-						.col-sm-6
-							input.form-control.password(type="password",name="newuser[password]")
-					.from-group
-						.col-sm-offset-2.col-sm-10
-							button.btn.btn-default#newUserBtn(type="submit") 注册
+					.form-group.m-form-group
+						label.userName.fa.fa-user
+						input.username-input(type="text",name="newuser[username]")
+					.form-group.m-form-group
+						label.password.fa.fa-lock
+						input.password-input(type="password",name="newuser[password]")
+					.from-group.btn-box
+						button.btn.btn-default#newUserBtn(type="submit") 注册
 		.container.login-part.login-old
 			.row
-				a.part-title.logOld 登录
+				//a.part-title.logOld 登录
 				form.form-horizontal(method="post",action="/login" name="olduser",role="form")
-					.form-group
-						label.userName.col-sm-2.control-label 用户名
-						.col-sm-6
-							input.form-control.username(type="text",name="olduser[username]")
-					.form-group
-						label.password.col-sm-2.control-label 密码
-						.col-sm-6
-							input.form-control.password(type="password",name="olduser[password]")
-					.from-group
-						.col-sm-offset-2.col-sm-10
-							button.btn.btn-default#oldUserBtn(type="submit") 登陆
+					.form-group.m-form-group
+						label.userName.fa.fa-user
+						input.username-input(type="text",name="olduser[username]")
+					.form-group.m-form-group
+						label.password.fa.fa-lock
+						input.password-input(type="password",name="olduser[password]")
+					.from-group.btn-box
+						button.btn.btn-default#oldUserBtn(type="submit") 登陆
 					if infos
 						- console.log('infos',infos)
 						div #{infos}

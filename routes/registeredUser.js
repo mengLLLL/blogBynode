@@ -212,31 +212,62 @@ router.post('/update', function (req, res) {
 })
 
 
-router.post('/comment', checkLogin, function(req, res){
-  var articleId = req.body.comment.articleId;
-  blog.find({_id: articleId}, function (err, blogResults) {
-    if(err){
-      return console.error(err)
-    }else{
-      user.find({_id:req.cookies.authorId}, function (err, userResults) {
-        if(err){
-          return console.error(err)
-        }else{
-          console.log('comment',req.body)
-          blogResults[0].comments.push({
-            commentName: userResults[0].username,
-            commentContent:req.body.comment.content,
-            commentId:44
-          })
-          blogResults[0].save();
-          console.log('blog comment save',blogResults[0]);
-          //res.redirect('/detail')
-        }
-      })
-    }
-  })
+//不用ajax实现的缺点是每提交一次评论并不能立即刷新评论部分，而是要整个页面刷新才可以看到刚刚发表的评论
+//router.post('/comment', checkLogin, function(req, res){
+//  var articleId = req.body.comment.articleId;
+//  blog.find({_id: articleId}, function (err, blogResults) {
+//    if(err){
+//      return console.error(err)
+//    }else{
+//      user.find({_id:req.cookies.authorId}, function (err, userResults) {
+//        if(err){
+//          return console.error(err)
+//        }else{
+//          console.log('comment',req.body)
+//          blogResults[0].comments.push({
+//            commentName: userResults[0].username,
+//            commentContent:req.body.comment.content,
+//            commentId:44
+//          })
+//          blogResults[0].save();
+//          console.log('blog comment save',blogResults[0]);
+//          //res.redirect('/detail')
+//        }
+//      })
+//    }
+//  })
+//
+//})
 
-})
+router.post('/comment', function (req, res) {
+  var results={};
+  if(req.xhr || req.accepts('json,html') ==='json'){
+    blog.find({_id:req.body.articleId}, function (err, blogResults) {
+      if(err){
+        return console.error(err)
+      }else{
+        user.find({_id: req.cookies.authorId}, function (err, userResults) {
+          if(err){
+            return console.error(err)
+          }else{
+            blogResults[0].comments.push({
+              commentName:userResults[0].username,
+              commentContent:req.body.commentContent,
+              commentId:blogResults[0].comments.length+1
+            });
+            blogResults[0].save();
+            results.comments = blogResults[0].comments;
+            results.commentUser = userResults[0]
+            res.send({
+              results:results,
+              success:true
+            })
+          }
+        })
+      }
+    });
+  }
+});
 
 
 module.exports = router;

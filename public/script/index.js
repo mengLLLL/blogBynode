@@ -4,6 +4,26 @@
 
 //每个页面都要包含这个文件
 $(function () {
+
+
+  $('#login-new').click(function (e) {
+    e.preventDefault();
+    $(this).siblings('a').removeClass('active')
+    $('.login-new').show();
+    $('.login-old').hide();
+    $(this).addClass('active');
+  })
+  $('#login-old').click(function (e) {
+    e.preventDefault();
+    $(this).siblings('a').removeClass('active')
+    $('.login-old').show();
+    $('.login-new').hide();
+    $(this).addClass('active');
+  })
+
+
+
+
   $('.page-header').click(function () {
     window.location.href = '/index'
   })

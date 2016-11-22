@@ -1,9 +1,12 @@
 extends ../layout
 
 block content
-	.container
-		.row
-			form.form-horizontal(method='post',action='/update',name='user',role='form')
+	.container.setting-container
+		.setting-title
+			h2
+				i.fa.fa-cogs &nbsp;设置
+		.row.update-user-msg
+			form.form-horizontal(method='post',action='/update',name='user',role='form',class='update-msg')
 				.form-group
 					label.col-sm-2 用户名
 					.col-sm-5
@@ -15,7 +18,8 @@ block content
 				.form-group
 					.col-sm-10
 						button.btn.btn-default#update(type='submit') 保存更改
-			form.form-horizontal(method='post', action='/upload', name='upload', enctype='multipart/form-data')
+		.row.update-user-avatar
+			form.form-horizontal(method='post', action='/upload', name='upload', enctype='multipart/form-data',class='update-avatar')
 				.form-group
 					label.col-sm-2 上传头像
 					.col-sm-5

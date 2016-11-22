@@ -1,33 +1,109 @@
-body{
-    background: #ffffff;
+/*body{*/
+    /*background: #ffffff;*/
+/*}*/
+/*a{*/
+    /*cursor: pointer;*/
+/*}*/
+/*.login-part{*/
+	/*width: 30%;*/
+	/*position: absolute;*/
+    /*border: 1px solid #28a4c9;*/
+    /*background: #ffffff;*/
+    /*padding:20px;*/
+/*}*/
+/*.login-new{*/
+    /*right:100px;*/
+    /*top:100px;*/
+/*}*/
+/*.login-old{*/
+    /*right:120px;*/
+    /*top:120px;*/
+/*}*/
+/*.part-title{*/
+    /*font-size: 20px;*/
+    /*margin-left: 10px;*/
+    /*margin-bottom: 20px;*/
+/*}*/
+/*.showPicture{*/
+    /*background: url("./bg.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: 0 0;*/
+    /*width:550px;*/
+    /*height:600px;*/
+/*}*/
+*{
+    padding:0;
+    margin:0;
 }
 a{
     cursor: pointer;
 }
-.login-part{
-	width: 30%;
-	position: absolute;
-    border: 1px solid #28a4c9;
-    background: #ffffff;
-    padding:20px;
+.login-container{
+    margin-top: 40px;
+    text-align: center;
 }
-.login-new{
-    right:100px;
-    top:100px;
+.login-logo{
+    display: inline-block;
 }
-.login-old{
-    right:120px;
-    top:120px;
+.login-logo img{
+    width:250px;
+    height:auto;
 }
-.part-title{
-    font-size: 20px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+
+.login-content{
+    margin-top: 20px;
 }
-.showPicture{
-    background: url("./bg.png");
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    width:550px;
-    height:600px;
+.login-content .login-old{
+    display: none;
+}
+.login-content .title-log{
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin: 20px auto 40px auto;
+}
+
+.login-content .title-log span{
+    position: relative;
+    color: rgba(0,0,0,0.4);
+
+    top:9px;
+    background: white;
+    padding: 0 30px;
+}
+.login-content .title-log span a{
+    padding:0 30px;
+    color: rgba(0,0,0,0.4);
+}
+.login-content .m-form-group{
+    margin: 0 auto 30px auto;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    width:302px;
+    line-height: 40px;
+}
+.login-content .m-form-group label{
+    border-right:1px solid rgba(0,0,0,0.2);
+    display: inline-block;
+    width:40px;
+    vertical-align: middle;
+    text-align: center;
+    line-height:40px;
+    margin: 0;
+}
+.login-content .m-form-group input{
+    padding-left: 5px;
+    line-height:40px;
+    outline: none;
+    border: none;
+    display: inline-block;
+    width:260px;
+}
+.login-content .login-part .btn-box{
+    text-align: center;
+}
+.login-content .login-part form button{
+    display: inline-block;
+}
+.active {
+    color: #000 !important;
 }

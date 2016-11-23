@@ -5,8 +5,7 @@
 
 var url = window.location.href;
 var articleId = url.split('=')[1];
-$('#hiddenArticleId').val(articleId);
-console.log($('#hiddenArticleId').val());
+$('#hiddenArticleId').val(articleId)
 var obj={};
 obj.articleId = articleId;
 

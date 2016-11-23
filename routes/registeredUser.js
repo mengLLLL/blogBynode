@@ -103,7 +103,7 @@ router.get('/logout', function (req, res) {
   });
 });
 
-router.get('/setting', function (req, res) {
+router.get('/setting', checkLogin, function (req, res) {
   user.find({_id:req.cookies.authorId}, function (err, results) {
     if(err){
       console.error(err)

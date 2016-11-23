@@ -5,6 +5,14 @@
 //每个页面都要包含这个文件
 $(function () {
 
+  $('body').mousewheel(function (e) {
+    //console.log(e.deltaX, e.deltaY)
+    if(e.deltaY >= 0){
+      $('.detail-header').show()
+    }else {
+      $('.detail-header').hide()
+    }
+  })
 
   $('#login-new').click(function (e) {
     e.preventDefault();
@@ -28,6 +36,7 @@ $(function () {
     window.location.href = '/index'
   })
 
+  //TODO 这里要修改一下
   $('#avatar').click(function () {
     if($('.m-dropdown').css('display') == 'none'){
       $('.m-dropdown').show()
@@ -41,5 +50,33 @@ $(function () {
     var articleId = $(this).parent().siblings("input").val();
     console.log('articleId',articleId)
     window.location.href = "/detail?articleId=" + articleId;
+  })
+
+
+  //setting part
+  $('.setting-tabs a').click(function () {
+    $('.setting-tabs a').removeClass('active');
+    $(this).addClass('active');
+    console.log($(this).attr('rel'));
+    $('form').hide()
+    $("#"+ $(this).attr('rel')+ "").show();
+  })
+
+
+  //upload avatar
+  $('#triggerUpload').click(function () {
+    $('#picture').click();
+    $('#picture').on('change', function () {
+      $('#upload').click();
+    })
+  })
+
+  //sidebar part
+  $('.sidebar .has-hover').hover(function(){
+    $(this).children($('.hover-tips')).show()
+  }, function () {
+    //$(this).children($('.hover-tips')).hide()
+    $(this).children().first().hide()
+    console.log()
   })
 })

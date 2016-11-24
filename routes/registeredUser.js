@@ -36,10 +36,9 @@ router.post('/login', checkNotLogin, function (req, res) {
       //这里的问题是cookie不能重写，目前只有清除cookie之后才可以用别的账号发布文章，否则不管是不是登录了别的账号，还是最开始的账号
       res.cookie('authorName',User.username);
       res.cookie('authorId',results[0]._id);
-      req.flash('info','login')
       res.redirect('/index')
     }else{
-      req.flash('error','用户名或密码错误')
+      req.flash('error','用户名或密码错误,重新输入哟')
       res.redirect('/login')
     }
   })
@@ -253,7 +252,8 @@ router.post('/comment', function (req, res) {
             blogResults[0].comments.push({
               commentName:userResults[0].username,
               commentContent:req.body.commentContent,
-              commentId:blogResults[0].comments.length+1
+              commentId:blogResults[0].comments.length+1,
+              commentAvatar:userResults[0].avatar
             });
             blogResults[0].save();
             results.comments = blogResults[0].comments;

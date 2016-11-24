@@ -27,8 +27,8 @@ block content
 						li.comment-item
 							.comment-avatar
 								a.commentAvatar(href="#")
-									img(src="#{author.avatar}")
-							a(href="#").comment-username #{author.username}
+									img(src="#{item.commentAvatar}")
+							a(href="#").comment-username #{item.commentName}
 							.comment-post-time #{moment(item.commentTime).format('YYYY.MM.DD HH:mm:ss')}
 							.comment-content #{item.commentContent}
 

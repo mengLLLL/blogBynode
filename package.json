@@ -23,6 +23,7 @@
     "formidable": "1.0.17",
     "jade": "^1.11.0",
     "jquery": "^3.1.0",
+    "jquery-file-upload-middleware": "0.1.8",
     "moment": "^2.15.1",
     "mongoose": "^4.6.1",
     "serve-static": "^1.11.1"

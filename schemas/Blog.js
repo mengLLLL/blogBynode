@@ -21,7 +21,8 @@ var blogSchema = new mongoose.Schema({
     commentId:{
       type:Number,
       default:0
-    }
+    },
+    commentAvatar:String
   }]
 });
 module.exports = blogSchema;

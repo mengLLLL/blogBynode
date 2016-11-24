@@ -6,6 +6,9 @@ block content
 		.login-logo
 			img(src='img/default.png')
 	.container.login-content
+		if errors
+			- console.log('errors',errors)
+			div.flash #{errors}
 		h4.title-log
 			span
 				a#login-old 登录
@@ -35,11 +38,6 @@ block content
 						input.password-input(type="password",name="olduser[password]")
 					.from-group.btn-box
 						button.btn.btn-default#oldUserBtn(type="submit") 登陆
-					if infos
-						- console.log('infos',infos)
-						div #{infos}
-					if errors
-						- console.log('errors',errors)
-						div #{errors}
+
 	script(src="script/index.js", type="text/javascript")
 

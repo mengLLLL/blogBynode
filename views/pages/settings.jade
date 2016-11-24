@@ -2,6 +2,9 @@ extends ../layout
 
 block content
 	.container.setting-container
+		if errors
+			- console.log('errors',errors)
+			div.flash #{errors}
 		.setting-title
 			h2
 				i.fa.fa-cogs &nbsp;设置

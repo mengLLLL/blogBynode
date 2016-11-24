@@ -48,7 +48,7 @@ router.post('/register', function (req, res) {
       return console.error(err)
     }
     if(results.length > 0){
-      console.log('user existed')
+      req.flash('error', '用户名已存在，换一个')
       res.redirect('/login')
     }else{
       var userObj = new user({

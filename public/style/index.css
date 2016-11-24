@@ -35,6 +35,12 @@ a:hover{
     text-decoration: none;
 }
 
+.flash{
+    position: absolute;
+    font-size: 13px;
+    color: #ff6699;
+}
+
 .login{
     margin-right: 10px;
     float: left;

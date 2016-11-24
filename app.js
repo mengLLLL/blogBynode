@@ -12,6 +12,8 @@ var session = require('express-session')
 var formidable = require('formidable');
 var util = require('util');
 
+//var upload = require('jquery-file-upload-middleware');
+
 
 //路由部分
 var touristRoute = require('./routes/tourist')
@@ -64,33 +66,9 @@ app.use(serveStatic('node_modules'))
 //静态文件目录
 app.use(express.static(path.join(__dirname,'public')))
 
+
+
+
 route(app)
-
-//app.use(formidable({
-//  encoding:'utf-8',
-//  uploadDir:path.join(__dirname,'public/img'),
-//  keepExtensions:true
-//}));
-
-////article delete
-//app.delete('/admin/delete',function(req,res){
-//  var id = req.query.id;
-//  console.log(id)
-//  if(id){
-//    blog.remove({_id:id},function(err,result){
-//      if(err){
-//        console.log(err)
-//      }else{
-//        res.json({
-//          success:1
-//        })
-//      }
-//    })
-//  }
-//})
-//
-
-
-
 //监听
 app.listen(port)

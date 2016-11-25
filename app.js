@@ -13,7 +13,7 @@ var formidable = require('formidable');
 var util = require('util');
 
 //var upload = require('jquery-file-upload-middleware');
-
+var markdown = require('markdown').markdown;
 
 //路由部分
 var touristRoute = require('./routes/tourist')
@@ -29,7 +29,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/blog')
 app.locals.moment = require("moment");
 
 
-
+app.locals.markdown = markdown;
 //cookie
 app.use(cookieParser(credentials.cookirSecret))
 

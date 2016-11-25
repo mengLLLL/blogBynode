@@ -504,3 +504,27 @@ input[type='file']{
 .publish-container{
     margin-top: 80px;
 }
+
+
+.animationTest{
+    position: absolute;
+    top:10%;
+    left:50%;
+    background: yellow;
+    animation: 2s modaltip linear forwards;
+}
+
+@keyframes modaltip {
+    0%{
+        width: 200px;
+        height:200px;
+    }
+    50%{
+        width: 300px;
+        height:300px;
+    }
+    100%{
+        width:400px;
+        height:400px;
+    }
+}

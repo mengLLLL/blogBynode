@@ -18,7 +18,7 @@ block content
 				span.readSum 阅读&nbsp;2000
 				span.commentSum 评论&nbsp;39
 				span.great 喜欢&nbsp;299
-			p.blogConteng #{blogDetail.articleContent}
+			.blogConteng !{markdown.toHTML(blogDetail.articleContent)}
 		div.comment-part
 			if comments
 				- console.log(comments.length)
@@ -30,7 +30,7 @@ block content
 									img(src="#{item.commentAvatar}")
 							a(href="#").comment-username #{item.commentName}
 							.comment-post-time #{moment(item.commentTime).format('YYYY.MM.DD HH:mm:ss')}
-							.comment-content #{item.commentContent}
+							.comment-content !{markdown.toHTML(item.commentContent)}
 
 		//	div.comment-box
 		//		form(name="comment",action='/comment',method="post")
@@ -45,5 +45,6 @@ block content
 					div#postComment 发表
 
 	script(src="script/index.js", type="text/javascript")
-	script(src="script/moment.min.js",type="text/javascript")
+	script(src="script/src/markdown.js", type="text/javascript")
+	script(src="script/src/moment.min.js",type="text/javascript")
 	script(src="script/detail.js", type="text/javascript")

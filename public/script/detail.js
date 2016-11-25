@@ -11,8 +11,15 @@ obj.articleId = articleId;
 
 $('#postComment').on('click', function (e) {
   e.preventDefault();
+  if(document.cookie.length ==0){
+    return window.location.href = '/login'
+  }
+
   console.log('postcomment click')
   obj.commentContent = $('#commentContent').val();
+  if(obj.commentContent==''){
+    return
+  }
   $.ajax({
     data:obj,
     url:'/comment',
@@ -20,6 +27,7 @@ $('#postComment').on('click', function (e) {
     dataType:'json',
     success: function (data) {
       if(data.success){
+        $('#commentContent').val('');
         console.log('data',data)
         var latest = data.results.comments.length - 1;
         //if($('.comment-list').children().length == 0){
@@ -33,7 +41,7 @@ $('#postComment').on('click', function (e) {
             "</a>" +
             "<div class='comment-post-time'>" + moment(data.results.comments[latest].commentTime).format('YYYY.MM.DD HH:mm:ss') +
             "</div>" +
-            "<div class='comment-content' >" + data.results.comments[latest].commentContent +
+            "<div class='comment-content' >" + markdown.toHTML(data.results.comments[latest].commentContent) +
             "</div>" +
             "</div>"
 

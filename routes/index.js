@@ -10,6 +10,7 @@ module.exports = function (app) {
   app.post('/register', require('./tourist'));
   app.get('/detail', require('./tourist'));
 
+
   app.post('/login', require('./registeredUser'));
   app.post('/publish', require('./registeredUser'));
   app.get('/publish', require('./registeredUser'));
@@ -18,4 +19,9 @@ module.exports = function (app) {
   app.post('/upload', require('./registeredUser'));
   app.post('/update', require('./registeredUser'));
   app.post('/comment', require('./registeredUser'));
+
+  //admin
+  app.get('/admin', require('./admin'));
+  app.get('/admin/blogs', require('./admin'));
+  app.delete('/admin', require('./admin'));
 }

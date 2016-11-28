@@ -5,10 +5,23 @@ html
 	include ../includes/head
 	block style
 body
-	h1 admin
-	a(href="/admin/blogs") 所有文章
-	a(href="/admin/users") 所有用户
-
+	.container
+		table.table.table-hover
+			thead
+				tr
+					th 标题
+					th 作者
+					th 创建时间
+					th 操作
+				tbody
+					each item in blogs
+						tr(class="item-id-#{item._id}")
+							td #{item.articleName}
+							td #{item.authorName}
+							td #{moment(item.createAt).format('YYYY.MM.DD')}
+							td
+								button.btn.btn-warning.deleteBlog(type="button", data-id="#{item._id}") 删除
+	script(src="script/admin.js",type="text/javascript")
 
 //extends ../layout
 //block content

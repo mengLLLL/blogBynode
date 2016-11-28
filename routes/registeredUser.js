@@ -11,9 +11,7 @@ var user = require("../models/user.js");
 var blog = require("../models/blog.js");
 var checkNotLogin = require("../middlewares/check.js").checkNotLogin;
 var checkLogin = require("../middlewares/check.js").checkLogin;
-var blogItemSum = 0;//TODO 这样能保证唯一吗？这是个问题。。。
 
-var userModel = require('../models/user');
 var formidable = require('formidable');
 var util = require('util');
 var path = require('path')
@@ -36,10 +34,10 @@ router.post('/login', checkNotLogin, function (req, res) {
       //这里的问题是cookie不能重写，目前只有清除cookie之后才可以用别的账号发布文章，否则不管是不是登录了别的账号，还是最开始的账号
       res.cookie('authorName',User.username);
       res.cookie('authorId',results[0]._id);
-      res.redirect('/index')
+      res.redirect('/index');
     }else{
-      req.flash('error','用户名或密码错误,重新输入哟')
-      res.redirect('/login')
+      req.flash('error','用户名或密码错误,重新输入哟');
+      res.redirect('/login');
     }
   })
 });

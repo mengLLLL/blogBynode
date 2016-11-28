@@ -7,7 +7,7 @@ $(function(){
 		var tr =  $('.item-id-' + articleId);
 		$.ajax({
 			type:'DELETE',
-			url:"/admin/delete?id="+articleId
+			url:"/admin?id="+articleId
 		}).done(function(result){
 			if(result.success ===1){
 				if(tr.length>0){

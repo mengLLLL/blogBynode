@@ -22,6 +22,7 @@ module.exports = function (app) {
 
   //admin
   app.get('/admin', require('./admin'));
-  app.get('/admin/blogs', require('./admin'));
+  app.get('/blogs', require('./admin'));
+  app.get('/users', require('./admin'));
   app.delete('/admin', require('./admin'));
 }

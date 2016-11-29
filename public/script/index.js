@@ -4,7 +4,6 @@
 
 //每个页面都要包含这个文件
 $(function () {
-
   $('body').mousewheel(function (e) {
     //console.log(e.deltaX, e.deltaY)
     if(e.deltaY >= 0){
@@ -36,12 +35,18 @@ $(function () {
     window.location.href = '/index'
   })
 
+  var flag = 1;
   //TODO 这里要修改一下
-  $('#avatar').click(function () {
-    if($('.m-dropdown').css('display') == 'none'){
-      $('.m-dropdown').show()
-    }else {
-      $('.m-dropdown').hide()
+  $('#avatar').click(function (e) {
+
+    e.preventDefault();
+    console.log(flag)
+    flag *= -1;
+    if(flag < 0){
+      $('.m-dropdown').show();
+
+    }else{
+      $('.m-dropdown').hide();
     }
   })
 
@@ -79,4 +84,49 @@ $(function () {
     $(this).children().first().hide()
     console.log()
   })
-})
+
+  $('.deleteBlog').click(function(e){
+    var obj={};
+    console.log('click')
+    var target = $(e.target);
+    var Id = target.data("id");
+    obj.id = Id;
+    obj.type="blog";
+    var tr =  $('.item-id-' + Id);
+    $.ajax({
+      data:obj,
+      type:'DELETE',
+      dataType:'json',
+      url:"/admin",
+      success: function (result) {
+        if(result.success === true){
+          console.log('删除成功！')
+          tr.remove();
+        }
+      }
+    })
+  })
+
+
+  $('.deleteUser').click(function(e){
+    var obj={};
+    console.log('click')
+    var target = $(e.target);
+    var Id = target.data("id");
+    obj.id = Id;
+    obj.type="user";
+    var tr =  $('.item-id-' + Id);
+    $.ajax({
+      data:obj,
+      type:'DELETE',
+      dataType:'json',
+      url:"/admin",
+      success: function (result) {
+        if(result.success === true){
+          console.log('删除成功！')
+          tr.remove();
+        }
+      }
+    })
+  })
+});

@@ -1,26 +1,22 @@
 extends ../layout
 block content
-	.container.publish-container(align="center")
-		if errors
-			- console.log('errors',errors)
-			div.flash #{errors}
-		.row
-			form.form-horizontal(method="post",action="/publish",name="blog",role="form")
+	.blogList
+		div.item
+			i.fa.fa-pencil &nbsp;新建文稿
+		each item in blogs
+			div.item(id="#{item._id}") #{item.articleName}
+	.container.publish-container
+		- console.log('blog length',blogs.length)
+		if(blogs.length > 0)
+			form(method="post",action="/publish",name="blog",role="form")
 				.form-group
-					label.col-sm-2.article-name.control-label 文章标题
-					.col-sm-5
-						input.form-control.article-name(type="text",name="blog[articleName]")
-				//- .form-group
-				//- 	label.col-sm-2.article-author.control-label 文章作者
-				//- 	.col-sm-5
-				//- 		input.form-control.article-author(type="text",name="blog[articleAuthor]")
+					input.article-name(type="text",name="blog[articleName]", value="#{blogs[0].articleName}")
 				.form-group
-					label.col-sm-2.article-content.control-label 文章内容
-					.col-sm-8
-						textarea.form-control.article-content(type="text",name="blog[articleContent]",rows="10")
+					textarea.article-content(type="text",name="blog[articleContent]",rows="10") #{blogs[0].articleContent}
 				.from-group
-					.col-sm-10
-						button.btn.btn-default#publish(type="submit") 发布
+					button.btn.btn-default#publish(type="submit") 发布
+		else
+			div.default-panel 默认
 
 
 

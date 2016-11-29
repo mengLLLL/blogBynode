@@ -3,12 +3,14 @@ html
 	meta(charset="utf-8")
 	title #{title}
 	include ../includes/head
-	block style
 body
-	h1 admin
-	a(href="/admin/blogs") 所有文章
-	a(href="/admin/users") 所有用户
-
+	.container
+		h2.admin-title #{admin_title}
+		div
+			a(href="/blogs") 所有文章
+		div
+			a(href="/users") 所有用户
+		a(href="/index") 返回首页
 
 //extends ../layout
 //block content

@@ -10,16 +10,15 @@ body
 		table.table.table-hover.m-table
 			thead
 				tr
-					th 头像
-					th 用户名
-					th 密码
+					th 标题
+					th 作者
+					th 创建时间
 					th 操作
 				tbody
-					each item in users
+					each item in blogs
 						tr(class="item-id-#{item._id}")
+							td #{item.articleName}
+							td #{item.authorName}
+							td #{moment(item.createAt).format('YYYY.MM.DD')}
 							td
-								img.admin-img(src="#{item.avatar}")
-							td #{item.username}
-							td #{item.password}
-							td
-								button.btn.btn-warning.deleteUser(type="button", data-id="#{item._id}") 删除
+								button.btn.btn-warning.deleteBlog(type="button", data-id="#{item._id}") 删除

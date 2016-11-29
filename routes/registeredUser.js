@@ -34,7 +34,14 @@ router.post('/login', checkNotLogin, function (req, res) {
       //这里的问题是cookie不能重写，目前只有清除cookie之后才可以用别的账号发布文章，否则不管是不是登录了别的账号，还是最开始的账号
       res.cookie('authorName',User.username);
       res.cookie('authorId',results[0]._id);
-      res.redirect('/index');
+      if(User.username ==='admin'){
+        res.render('admin',{
+          title:'backStage'
+        })
+      }else{
+        res.redirect('/index');
+      }
+
     }else{
       req.flash('error','用户名或密码错误,重新输入哟');
       res.redirect('/login');
@@ -47,15 +54,22 @@ router.post('/login', checkNotLogin, function (req, res) {
 //发表文章，要检测是否已登陆
 router.get('/publish', checkLogin, function (req, res) {
   if(req.cookies.authorId){
-    user.find({_id:req.cookies.authorId}, function (err, results) {
+    user.find({_id:req.cookies.authorId}, function (err, userResults) {
       if(err){
         return console.error(err)
       }else{
-        res.render('publish',{
-          title:'Aloha 写文章啦～_～',
-          logged:true,
-          user:results[0],
-          avatar:results[0].avatar
+        blog.find({authorId:req.cookies.authorId}, function (err, blogResults) {
+          console.log('blogResults', blogResults)
+          if(err){
+            return console.error(err)
+          }
+          res.render('publish',{
+            title:'Aloha 写文章啦～_～',
+            logged:true,
+            user:userResults[0],
+            avatar:userResults[0].avatar,
+            blogs:blogResults
+          })
         })
       }
     })

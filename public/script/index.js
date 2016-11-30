@@ -6,9 +6,9 @@
 $(function () {
   $('body').mousewheel(function (e) {
     //console.log(e.deltaX, e.deltaY)
-    if(e.deltaY >= 0){
+    if (e.deltaY >= 0) {
       $('.detail-header').show()
-    }else {
+    } else {
       $('.detail-header').hide()
     }
   })
@@ -29,8 +29,6 @@ $(function () {
   })
 
 
-
-
   $('.page-header').click(function () {
     window.location.href = '/index'
   })
@@ -42,18 +40,18 @@ $(function () {
     e.preventDefault();
     console.log(flag)
     flag *= -1;
-    if(flag < 0){
+    if (flag < 0) {
       $('.m-dropdown').show();
 
-    }else{
+    } else {
       $('.m-dropdown').hide();
     }
   })
 
 
-  $('.articleName').on('click',function(){
+  $('.articleName').on('click', function () {
     var articleId = $(this).parent().siblings("input").val();
-    console.log('articleId',articleId)
+    console.log('articleId', articleId)
     window.location.href = "/detail?articleId=" + articleId;
   })
 
@@ -64,7 +62,7 @@ $(function () {
     $(this).addClass('active');
     console.log($(this).attr('rel'));
     $('form').hide()
-    $("#"+ $(this).attr('rel')+ "").show();
+    $("#" + $(this).attr('rel') + "").show();
   })
 
 
@@ -77,7 +75,7 @@ $(function () {
   })
 
   //sidebar part
-  $('.sidebar .has-hover').hover(function(){
+  $('.sidebar .has-hover').hover(function () {
     $(this).children($('.hover-tips')).show()
   }, function () {
     //$(this).children($('.hover-tips')).hide()
@@ -85,21 +83,21 @@ $(function () {
     console.log()
   })
 
-  $('.deleteBlog').click(function(e){
-    var obj={};
+  $('.deleteBlog').click(function (e) {
+    var obj = {};
     console.log('click')
     var target = $(e.target);
     var Id = target.data("id");
     obj.id = Id;
-    obj.type="blog";
-    var tr =  $('.item-id-' + Id);
+    obj.type = "blog";
+    var tr = $('.item-id-' + Id);
     $.ajax({
-      data:obj,
-      type:'DELETE',
-      dataType:'json',
-      url:"/admin",
+      data: obj,
+      type: 'DELETE',
+      dataType: 'json',
+      url: "/admin",
       success: function (result) {
-        if(result.success === true){
+        if (result.success === true) {
           console.log('删除成功！')
           tr.remove();
         }
@@ -108,25 +106,47 @@ $(function () {
   })
 
 
-  $('.deleteUser').click(function(e){
-    var obj={};
+  $('.deleteUser').click(function (e) {
+    var obj = {};
     console.log('click')
     var target = $(e.target);
     var Id = target.data("id");
     obj.id = Id;
-    obj.type="user";
-    var tr =  $('.item-id-' + Id);
+    obj.type = "user";
+    var tr = $('.item-id-' + Id);
     $.ajax({
-      data:obj,
-      type:'DELETE',
-      dataType:'json',
-      url:"/admin",
+      data: obj,
+      type: 'DELETE',
+      dataType: 'json',
+      url: "/admin",
       success: function (result) {
-        if(result.success === true){
+        if (result.success === true) {
           console.log('删除成功！')
           tr.remove();
         }
       }
     })
   })
-});
+
+  //publish page
+  $("#createArticle").click(function () {
+    console.log('createArtilce click')
+    $('.publish-container .blog-panel').hide();
+    $('.default-panel').hide();
+    $('#newBlog').show()
+  })
+
+  $('#blogList .blog-item').click(function () {
+    $('#newBlog').hide()
+    var id = $(this).attr("id");
+    var index = $(this).index()
+    console.log('id', id,'index', index);
+    $('.publish-container .blog-panel').hide();
+    $('.publish-container .blog-panel').eq(index-1).show()
+
+  });
+
+
+
+
+})

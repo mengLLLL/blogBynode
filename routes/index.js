@@ -13,6 +13,7 @@ module.exports = function (app) {
 
   app.post('/login', require('./registeredUser'));
   app.post('/publish', require('./registeredUser'));
+  app.post('/updateblog', require('./registeredUser'));
   app.get('/publish', require('./registeredUser'));
   app.get('/logout', require('./registeredUser'));
   app.get('/setting', require('./registeredUser'));

@@ -71,6 +71,7 @@ a:hover{
     position: fixed;
     top:8px;
     right:30px;
+    z-index:1000;
 }
 .user-msg .avatar{
     display: inline-block;
@@ -499,35 +500,6 @@ input[type='file']{
 }
 
 
-/*publish part*/
-
-.publish-container{
-    margin-top: 80px;
-}
-
-
-.animationTest{
-    position: absolute;
-    top:10%;
-    left:50%;
-    background: yellow;
-    animation: 2s modaltip linear forwards;
-}
-
-@keyframes modaltip {
-    0%{
-        width: 200px;
-        height:200px;
-    }
-    50%{
-        width: 300px;
-        height:300px;
-    }
-    100%{
-        width:400px;
-        height:400px;
-    }
-}
 
 
 /*admin users*/
@@ -546,6 +518,16 @@ input[type='file']{
 }
 
 /*publish page*/
+
+.publish-container{
+    position: fixed;
+    left:310px;
+    width:-webkit-calc(100% - 310px);
+    width:-moz-calc(100% - 310px);
+    width:calc(100% - 310px);
+    height:100%;
+}
+
 .blogList{
     position: fixed;
     width:250px;
@@ -566,4 +548,69 @@ input[type='file']{
     -webkit-box-shadow: 3px  0px 6px 2px rgba(0,0,0,0.3);
     -moz-box-shadow: 3px  0px 6px 2px rgba(0,0,0,0.3);
     box-shadow: 3px  0px 6px 2px rgba(0,0,0,0.3);
+}
+.publish-container .m-form-group:first-of-type{
+    margin-top: 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.publish-container .m-form-group input{
+    display: inline-block;
+    width:100%;
+    padding:10px;
+    border:none;
+    outline:none;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.publish-container .m-form-group textarea{
+    width: 100%;
+    padding:20px;
+    margin-top: 50px;
+    outline:none;
+    border:none;
+}
+.publish-container .publish-btn-box{
+    position: fixed;
+    width:100%;
+    height:40px;
+    top:70px;
+    background: #d9d9d9;
+}
+.publish-container .publish-btn-box button{
+    position: fixed;
+    right:20px;
+    line-height:40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border:none;
+    background: #d9d9d9;
+    outline:none;
+}
+.publish-container .default-panel{
+    width:100%;
+    height:100%;
+    text-align: center;
+    padding-top: 140px;
+
+}
+.publish-container .blog-panel{
+    display: none;
+}
+.publish-container .blog-panel:first-of-type{
+    display: block;
+}
+.publish-container .default-panel span{
+    font-size: 200px;
+    color: rgba(0,0,0,0.3);
+    text-shadow: 10px 10px 19px rgba(0,0,0,0.4);
+}
+.publish-container .default-panel i{
+    position: relative;
+    top:42px;
+    right:130px;
+    color:rgba(0,0,0,0.4);
+}
+.publish-container .new-blog-tab{
+    display: none;
 }

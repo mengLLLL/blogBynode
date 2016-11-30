@@ -1,23 +1,35 @@
 extends ../layout
 block content
-	.blogList
-		div.item
+	.blogList#blogList
+		div.item#createArticle
 			i.fa.fa-pencil &nbsp;新建文稿
 		each item in blogs
-			div.item(id="#{item._id}") #{item.articleName}
-	.container.publish-container
+			div.item.blog-item(id="#{item._id}") #{item.articleName}
+	.publish-container
 		- console.log('blog length',blogs.length)
 		if(blogs.length > 0)
-			form(method="post",action="/publish",name="blog",role="form")
-				.form-group
-					input.article-name(type="text",name="blog[articleName]", value="#{blogs[0].articleName}")
-				.form-group
-					textarea.article-content(type="text",name="blog[articleContent]",rows="10") #{blogs[0].articleContent}
-				.from-group
-					button.btn.btn-default#publish(type="submit") 发布
+			each item in blogs
+				div.blog-panel
+					form(method="post",action="/updateblog",name="blog",role="form")
+						input(type="text", name="blog[articleId]", value="#{item._id}", style="display:none")
+						.m-form-group.article-name
+							input(type="text",name="blog[articleName]", value="#{item.articleName}")
+						.m-form-group
+							textarea.article-content(type="text",name="blog[articleContent]",rows="10") #{item.articleContent}
+						.m-from-group.publish-btn-box
+							button#publish(type="submit") 修改
 		else
-			div.default-panel 默认
-
+			div.default-panel
+				span Aloha
+				i 快来发表你的第一篇文章吧！
+		div.new-blog-tab#newBlog
+			form(method="post",action="/publish",name="blog",role="form")
+				.m-form-group.article-name
+					input(type="text",name="blog[articleName]",placeholder="标题")
+				.m-form-group
+					textarea.article-content(type="text",name="blog[articleContent]",rows="10")
+				.m-from-group.publish-btn-box
+					button#publish(type="submit") 发布
 
 
 

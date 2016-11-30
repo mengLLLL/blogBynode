@@ -101,6 +101,11 @@ router.post('/publish', checkLogin, function (req, res) {
   })
 })
 
+router.post('/updateblog', checkLogin, function (req, res) {
+  var newBlog = req.body.blog;
+  blog.update({_id: newBlog.articleId}, {$set:{articleName: newBlog.articleName, articleContent:newBlog.articleContent}}, function (err) {})
+  res.redirect('/index')
+})
 
 router.get('/logout', function (req, res) {
   res.clearCookie('authorName');
@@ -280,6 +285,7 @@ router.post('/comment', function (req, res) {
     });
   }
 });
+
 
 
 module.exports = router;
